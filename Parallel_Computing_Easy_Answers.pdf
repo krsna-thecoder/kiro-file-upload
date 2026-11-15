@@ -1,0 +1,382 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R 12 0 R 14 0 R] /Count 5 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 4705 >>
+stream
+q
+0.12 0.20 0.36 rg
+BT /F2 16 Tf 48 808 Td (Parallel Computing: Easy Answers) Tj ET
+0.45 0.48 0.55 RG 48 798 m 547 798 l S
+0 g
+BT /F2 11.5 Tf 48 778.0 Td (How to read the answers) Tj ET
+BT /F1 9.4 Tf 48 760.0 Td (This guide rewrites the sixteen questions in direct, exam-friendly language. The formulas give) Tj ET
+BT /F1 9.4 Tf 48 747.0 Td (the usual asymptotic model. Let t_calc be the time for one multiply-accumulate, t_s the message) Tj ET
+BT /F1 9.4 Tf 48 734.0 Td (startup time, and t_w the time per byte. Constants vary slightly with the machine and network;) Tj ET
+BT /F1 9.4 Tf 48 721.0 Td (the important idea is stated beside each formula.) Tj ET
+BT /F1 9.4 Tf 48 708.0 Td () Tj ET
+BT /F1 9.4 Tf 48 695.0 Td (Notation: A, B, C are n x n matrices and C = AB. p is the processor count. q = sqrt\(p\) for a) Tj ET
+BT /F1 9.4 Tf 48 682.0 Td (square processor grid. A processor array has fixed local neighbor links; a multiprocessor shares) Tj ET
+BT /F1 9.4 Tf 48 669.0 Td (memory. A multicomputer has separate memories and sends messages.) Tj ET
+BT /F1 9.4 Tf 48 656.0 Td () Tj ET
+BT /F2 11.5 Tf 48 643.0 Td (Q1. Sequential matrix multiplication) Tj ET
+BT /F1 9.4 Tf 48 625.0 Td (For every output position \(i,j\), compute the dot product of row i of A and column j of B.) Tj ET
+BT /F1 9.4 Tf 48 612.0 Td () Tj ET
+BT /F1 9.4 Tf 48 599.0 Td (Algorithm:) Tj ET
+BT /F3 8.2 Tf 48 586.0 Td (for i = 0 to n-1) Tj ET
+BT /F3 8.2 Tf 48 573.0 Td (  for j = 0 to n-1) Tj ET
+BT /F3 8.2 Tf 48 560.0 Td (    C[i][j] = 0) Tj ET
+BT /F3 8.2 Tf 48 547.0 Td (    for k = 0 to n-1) Tj ET
+BT /F3 8.2 Tf 48 534.0 Td (      C[i][j] = C[i][j] + A[i][k] * B[k][j]) Tj ET
+BT /F1 9.4 Tf 48 521.0 Td () Tj ET
+BT /F1 9.4 Tf 48 508.0 Td (There are n^2 output entries. Each needs n multiply-add operations, so the running time is T1 =) Tj ET
+BT /F1 9.4 Tf 48 495.0 Td (Theta\(n^3\). The storage for the three matrices is Theta\(n^2\).) Tj ET
+BT /F1 9.4 Tf 48 482.0 Td () Tj ET
+BT /F2 11.5 Tf 48 469.0 Td (Q2. Processor array versus multiprocessor) Tj ET
+BT /F1 9.4 Tf 48 451.0 Td (A processor array is a regular collection of simple processing elements \(PEs\), usually laid out) Tj ET
+BT /F1 9.4 Tf 48 438.0 Td (as a line or mesh. PEs run the same instruction at the same time on different data \(SIMD\) and) Tj ET
+BT /F1 9.4 Tf 48 425.0 Td (normally communicate with nearby PEs.) Tj ET
+BT /F1 9.4 Tf 48 412.0 Td () Tj ET
+BT /F1 9.4 Tf 48 399.0 Td (A multiprocessor has a smaller number of full processors that share one main memory. Each) Tj ET
+BT /F1 9.4 Tf 48 386.0 Td (processor can execute its own instruction stream \(MIMD\), so it is more flexible but must) Tj ET
+BT /F1 9.4 Tf 48 373.0 Td (coordinate access to shared data.) Tj ET
+BT /F1 9.4 Tf 48 360.0 Td () Tj ET
+BT /F1 9.4 Tf 48 347.0 Td (The SIMD matrix multiplication algorithm uses a processor array. One PE is assigned to each) Tj ET
+BT /F1 9.4 Tf 48 334.0 Td (output entry or block, and all PEs perform the same multiply-accumulate instruction together.) Tj ET
+BT /F1 9.4 Tf 48 321.0 Td () Tj ET
+BT /F2 11.5 Tf 48 308.0 Td (Q3. Matrix multiplication on an n x n mesh) Tj ET
+BT /F1 9.4 Tf 48 290.0 Td (Use n^2 PEs P\(i,j\), one for each C[i,j]. Put A[i,0] at the left edge of row i and B[0,j] at the) Tj ET
+BT /F1 9.4 Tf 48 277.0 Td (top edge of column j. At every clock step, a values move one place right, b values move one) Tj ET
+BT /F1 9.4 Tf 48 264.0 Td (place down, and each PE multiplies the two values currently meeting there and adds the result to) Tj ET
+BT /F1 9.4 Tf 48 251.0 Td (its local C value.) Tj ET
+BT /F1 9.4 Tf 48 238.0 Td () Tj ET
+BT /F1 9.4 Tf 48 225.0 Td (Data flow \(arrows show the direction of travel\):) Tj ET
+BT /F1 9.4 Tf 48 212.0 Td (  A row:  A[i,k] ---> ---> --->) Tj ET
+BT /F3 8.2 Tf 48 199.0 Td (                         P\(i,j\): C[i,j] += A[i,k] * B[k,j]) Tj ET
+BT /F1 9.4 Tf 48 186.0 Td (  B column:        |) Tj ET
+BT /F3 8.2 Tf 48 173.0 Td (                   v B[k,j]) Tj ET
+BT /F1 9.4 Tf 48 160.0 Td () Tj ET
+BT /F1 9.4 Tf 48 147.0 Td (The kth pair needed at P\(i,j\) is delivered by the row and column pipelines. After the pipeline) Tj ET
+BT /F1 9.4 Tf 48 134.0 Td (fills, every PE works each step. The last answer appears after about 2n - 1 steps, hence Tp =) Tj ET
+BT /F1 9.4 Tf 48 121.0 Td (\(2n - 1\)t_calc = Theta\(n\), if movement and one multiply-accumulate fit in a step. This very low) Tj ET
+BT /F1 9.4 Tf 48 108.0 Td (time uses n^2 PEs; it does not mean the total work is smaller.) Tj ET
+BT /F1 9.4 Tf 48 95.0 Td () Tj ET
+BT /F2 11.5 Tf 48 82.0 Td (Q4. Shared-memory row-wise block-striped algorithm) Tj ET
+0.45 0.48 0.55 RG 48 35 m 547 35 l S
+0 g
+BT /F1 8 Tf 48 22 Td (Simplified study notes | Page 1) Tj ET
+Q
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 5047 >>
+stream
+q
+0.12 0.20 0.36 rg
+BT /F2 16 Tf 48 808 Td (Parallel Computing: Easy Answers) Tj ET
+0.45 0.48 0.55 RG 48 798 m 547 798 l S
+0 g
+BT /F1 9.4 Tf 48 778.0 Td (Divide A and C into p contiguous horizontal strips, each with about n/p rows. Processor r) Tj ET
+BT /F1 9.4 Tf 48 765.0 Td (computes every C[i,j] in its assigned rows and reads the common matrix B from shared memory. No) Tj ET
+BT /F1 9.4 Tf 48 752.0 Td (other processor writes those C rows, so locks are not needed for the arithmetic. A barrier is) Tj ET
+BT /F1 9.4 Tf 48 739.0 Td (used when all strips are complete.) Tj ET
+BT /F1 9.4 Tf 48 726.0 Td () Tj ET
+BT /F1 9.4 Tf 48 713.0 Td (Ideal computation time: Tp = \(n^3/p\)t_calc. More realistically, Tp = \(n^3/p\)t_calc + T_memory +) Tj ET
+BT /F1 9.4 Tf 48 700.0 Td (T_barrier, where the added terms cover shared-memory traffic and synchronization.) Tj ET
+BT /F1 9.4 Tf 48 687.0 Td () Tj ET
+BT /F1 9.4 Tf 48 674.0 Td (With sequential time T1 = n^3 t_calc, speedup is S = T1/Tp and efficiency is E = S/p = T1/\(pTp\).) Tj ET
+BT /F1 9.4 Tf 48 661.0 Td (If memory contention is small, S is close to p and E is close to 1. When many processors) Tj ET
+BT /F1 9.4 Tf 48 648.0 Td (repeatedly read B or compete for memory bandwidth, Tp rises and both measures fall.) Tj ET
+BT /F1 9.4 Tf 48 635.0 Td () Tj ET
+BT /F2 11.5 Tf 48 622.0 Td (Q5. 1-D row-wise algorithm on a multicomputer) Tj ET
+BT /F1 9.4 Tf 48 604.0 Td (Each processor owns n/p rows of A and computes the matching rows of C. Every processor needs all) Tj ET
+BT /F1 9.4 Tf 48 591.0 Td (of B, so B is broadcast \(or replicated during distribution\). It then performs the same three) Tj ET
+BT /F1 9.4 Tf 48 578.0 Td (nested loops only for its local rows.) Tj ET
+BT /F1 9.4 Tf 48 565.0 Td () Tj ET
+BT /F1 9.4 Tf 48 552.0 Td (Computation time: T_comp = \(n^3/p\)t_calc. On a tree network, broadcasting B costs approximately) Tj ET
+BT /F1 9.4 Tf 48 539.0 Td (T_comm = log\(p\)[t_s + \(8n^2\)t_w] for 8-byte entries. A ring gives a different constant, but it) Tj ET
+BT /F1 9.4 Tf 48 526.0 Td (still sends a full n x n B matrix through the network.) Tj ET
+BT /F1 9.4 Tf 48 513.0 Td () Tj ET
+BT /F1 9.4 Tf 48 500.0 Td (The main communication overhead is the replication of B. Initial scattering of A and collection) Tj ET
+BT /F1 9.4 Tf 48 487.0 Td (of C may also be counted. As p grows, each processor computes fewer rows but still needs the) Tj ET
+BT /F1 9.4 Tf 48 474.0 Td (full B, so communication eventually dominates. This is why the 1-D method scales poorly at large) Tj ET
+BT /F1 9.4 Tf 48 461.0 Td (p.) Tj ET
+BT /F1 9.4 Tf 48 448.0 Td () Tj ET
+BT /F2 11.5 Tf 48 435.0 Td (Q6. 4 x 4 mesh: skewing and first three steps) Tj ET
+BT /F1 9.4 Tf 48 417.0 Td (Use indices 0,1,2,3. Initially skew A row i left by i places and B column j up by j places. Thus) Tj ET
+BT /F1 9.4 Tf 48 404.0 Td (PE P\(i,j\) first holds A[i,\(i+j\) mod 4] and B[\(i+j\) mod 4,j]. Each step it adds their product to) Tj ET
+BT /F1 9.4 Tf 48 391.0 Td (C[i,j], then shifts A left and B up by one place.) Tj ET
+BT /F1 9.4 Tf 48 378.0 Td () Tj ET
+BT /F1 9.4 Tf 48 365.0 Td (The number k used by every PE in the first three product steps is:) Tj ET
+BT /F3 8.2 Tf 48 352.0 Td (step 1:  0 1 2 3       step 2:  1 2 3 0       step 3:  2 3 0 1) Tj ET
+BT /F3 8.2 Tf 48 339.0 Td (          1 2 3 0                2 3 0 1                3 0 1 2) Tj ET
+BT /F3 8.2 Tf 48 326.0 Td (          2 3 0 1                3 0 1 2                0 1 2 3) Tj ET
+BT /F3 8.2 Tf 48 313.0 Td (          3 0 1 2                0 1 2 3                1 2 3 0) Tj ET
+BT /F1 9.4 Tf 48 300.0 Td () Tj ET
+BT /F1 9.4 Tf 48 287.0 Td (For example, at step 1 P\(2,1\) adds A[2,3]B[3,1]; at steps 2 and 3 it adds A[2,0]B[0,1] and) Tj ET
+BT /F1 9.4 Tf 48 274.0 Td (A[2,1]B[1,1]. Step 4 supplies the remaining k value. Therefore four multiply-accumulate steps) Tj ET
+BT /F1 9.4 Tf 48 261.0 Td (are required after the initial skewing. The pre-skew can be performed by the same neighbor) Tj ET
+BT /F1 9.4 Tf 48 248.0 Td (links.) Tj ET
+BT /F1 9.4 Tf 48 235.0 Td () Tj ET
+BT /F2 11.5 Tf 48 222.0 Td (Q7. Cannon's algorithm on a q x q multicomputer grid) Tj ET
+BT /F1 9.4 Tf 48 204.0 Td (Let q = sqrt\(p\), and give each processor one \(n/q\) x \(n/q\) block of A, B, and C. First skew A) Tj ET
+BT /F1 9.4 Tf 48 191.0 Td (block \(i,j\) left by i positions and B block \(i,j\) up by j positions. Then repeat q times:) Tj ET
+BT /F1 9.4 Tf 48 178.0 Td (multiply the local A and B blocks into C; shift A left one processor and B up one processor,) Tj ET
+BT /F1 9.4 Tf 48 165.0 Td (with wraparound.) Tj ET
+BT /F1 9.4 Tf 48 152.0 Td () Tj ET
+BT /F3 8.2 Tf 48 139.0 Td (Grid idea:) Tj ET
+BT /F3 8.2 Tf 48 126.0 Td ( A blocks move left:  [P00] <--- [P01] <--- [P02]) Tj ET
+BT /F3 8.2 Tf 48 113.0 Td ( B blocks move up:       ^         ^         ^) Tj ET
+BT /F3 8.2 Tf 48 100.0 Td (                         [P10]    [P11]    [P12]) Tj ET
+BT /F1 9.4 Tf 48 87.0 Td () Tj ET
+0.45 0.48 0.55 RG 48 35 m 547 35 l S
+0 g
+BT /F1 8 Tf 48 22 Td (Simplified study notes | Page 2) Tj ET
+Q
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 11 0 R >>
+endobj
+11 0 obj
+<< /Length 5252 >>
+stream
+q
+0.12 0.20 0.36 rg
+BT /F2 16 Tf 48 808 Td (Parallel Computing: Easy Answers) Tj ET
+0.45 0.48 0.55 RG 48 798 m 547 798 l S
+0 g
+BT /F1 9.4 Tf 48 778.0 Td (Each processor does n^3/p arithmetic. With a block size n^2/p entries, a common message) Tj ET
+BT /F1 9.4 Tf 48 765.0 Td (model is:) Tj ET
+BT /F3 8.2 Tf 48 752.0 Td (Tp = \(n^3/p\)t_calc + 2\(q-1\)[t_s + 8\(n^2/p\)t_w].) Tj ET
+BT /F1 9.4 Tf 48 739.0 Td (The factor 2 counts the A and B shifts; hardware that overlaps them can reduce the constant.) Tj ET
+BT /F1 9.4 Tf 48 726.0 Td () Tj ET
+BT /F1 9.4 Tf 48 713.0 Td (Compared with 1-D striping, Cannon's algorithm sends small blocks only to neighbors instead of) Tj ET
+BT /F1 9.4 Tf 48 700.0 Td (broadcasting all of B. It is therefore more scalable. Its latency-related isoefficiency is) Tj ET
+BT /F1 9.4 Tf 48 687.0 Td (roughly Theta\(p^\(3/2\)\), while 1-D replication becomes communication-bound much sooner.) Tj ET
+BT /F1 9.4 Tf 48 674.0 Td () Tj ET
+BT /F2 11.5 Tf 48 661.0 Td (Q8. Numerical comparison: p = 64, n = 1024) Tj ET
+BT /F1 9.4 Tf 48 643.0 Td (Assumption: t_calc = 10 ns is one multiply-accumulate, entries are 8 bytes, and initial) Tj ET
+BT /F1 9.4 Tf 48 630.0 Td (placement/final collection are excluded. Sequential time is T1 = n^3 t_calc = 10.7374 s. Here q) Tj ET
+BT /F1 9.4 Tf 48 617.0 Td (= sqrt\(64\) = 8.) Tj ET
+BT /F1 9.4 Tf 48 604.0 Td () Tj ET
+BT /F1 9.4 Tf 48 591.0 Td (\(a\) 1-D row-wise. Computation = \(n^3/64\)t_calc = 0.167772 s. One B broadcast has 6 tree stages.) Tj ET
+BT /F1 9.4 Tf 48 578.0 Td (A stage costs 50 microseconds + \(1024^2 x 8 x 20 ns\) = 0.167822 s. Thus Tcomm = 6 x 0.167822 =) Tj ET
+BT /F1 9.4 Tf 48 565.0 Td (1.006933 s and Tp = 1.174705 s. Speedup S = 10.7374/1.174705 = 9.14. Efficiency E = 9.14/64 =) Tj ET
+BT /F1 9.4 Tf 48 552.0 Td (0.143 \(14.3%\).) Tj ET
+BT /F1 9.4 Tf 48 539.0 Td () Tj ET
+BT /F1 9.4 Tf 48 526.0 Td (\(b\) 2-D checkerboard/Cannon. A block is 128 x 128 entries. One block shift costs 50 microseconds) Tj ET
+BT /F1 9.4 Tf 48 513.0 Td (+ \(128^2 x 8 x 20 ns\) = 0.002671 s. There are 2\(8-1\) shifts, so Tcomm = 0.037400 s and Tp =) Tj ET
+BT /F1 9.4 Tf 48 500.0 Td (0.205172 s. S = 10.7374/0.205172 = 52.33. E = 52.33/64 = 0.818 \(81.8%\). If A and B shifts) Tj ET
+BT /F1 9.4 Tf 48 487.0 Td (overlap, the 2-D result is still better.) Tj ET
+BT /F1 9.4 Tf 48 474.0 Td () Tj ET
+BT /F1 9.4 Tf 48 461.0 Td (Choose the 2-D method. It keeps communication local and moves much smaller blocks, giving far) Tj ET
+BT /F1 9.4 Tf 48 448.0 Td (higher speedup and efficiency for these values.) Tj ET
+BT /F1 9.4 Tf 48 435.0 Td () Tj ET
+BT /F2 11.5 Tf 48 422.0 Td (Q9. The two phases of Gaussian elimination) Tj ET
+BT /F1 9.4 Tf 48 404.0 Td (Gaussian elimination solves Ax = b in two phases. First, forward elimination uses row operations) Tj ET
+BT /F1 9.4 Tf 48 391.0 Td (to turn A into an upper triangular matrix U. It also updates b to a new right-hand side y. This) Tj ET
+BT /F1 9.4 Tf 48 378.0 Td (phase performs about n^3/3 arithmetic operations, so it is Theta\(n^3\).) Tj ET
+BT /F1 9.4 Tf 48 365.0 Td () Tj ET
+BT /F1 9.4 Tf 48 352.0 Td (Second, back substitution finds x[n-1], then x[n-2], and so on using the triangular equations.) Tj ET
+BT /F1 9.4 Tf 48 339.0 Td (It takes about n^2/2 operations, so it is Theta\(n^2\). The forward phase dominates the total) Tj ET
+BT /F1 9.4 Tf 48 326.0 Td (sequential running time, which is Theta\(n^3\).) Tj ET
+BT /F1 9.4 Tf 48 313.0 Td () Tj ET
+BT /F2 11.5 Tf 48 300.0 Td (Q10. Jacobi iteration and convergence) Tj ET
+BT /F3 9.0 Tf 48 282.0 Td (For Ax = b, Jacobi computes every new component from values in the previous iteration:) Tj ET
+BT /F3 9.0 Tf 48 269.0 Td (x_i^\(k+1\) = \( b_i - sum over j != i of a_ij x_j^\(k\) \) / a_ii,   for i = 1,...,n.) Tj ET
+BT /F1 9.4 Tf 48 256.0 Td () Tj ET
+BT /F1 9.4 Tf 48 243.0 Td (All x_i^\(k+1\) values use the old vector x^\(k\), so they can be calculated in parallel. Do not) Tj ET
+BT /F1 9.4 Tf 48 230.0 Td (replace one old value with a new value halfway through an iteration; that would be Gauss-Seidel,) Tj ET
+BT /F1 9.4 Tf 48 217.0 Td (not Jacobi.) Tj ET
+BT /F1 9.4 Tf 48 204.0 Td () Tj ET
+BT /F1 9.4 Tf 48 191.0 Td (A useful sufficient condition for convergence is strict diagonal dominance in every row: |a_ii|) Tj ET
+BT /F1 9.4 Tf 48 178.0 Td (> sum over j != i of |a_ij|. The exact condition is spectral radius rho\(D^\(-1\)\(L+U\)\) < 1. Stop) Tj ET
+BT /F1 9.4 Tf 48 165.0 Td (when the change or residual is below a chosen tolerance.) Tj ET
+BT /F1 9.4 Tf 48 152.0 Td () Tj ET
+BT /F2 11.5 Tf 48 139.0 Td (Q11. Parallel Gaussian elimination with cyclic rows and pivoting) Tj ET
+BT /F1 9.4 Tf 48 121.0 Td (Assign row i to processor i mod p. This cyclic \(striped\) placement spreads the shrinking set of) Tj ET
+BT /F1 9.4 Tf 48 108.0 Td (active rows across processors better than giving each processor one large block. At elimination) Tj ET
+BT /F1 9.4 Tf 48 95.0 Td (step k, processors find the largest |a[i,k]| among their local active rows. A global reduction) Tj ET
+BT /F1 9.4 Tf 48 82.0 Td (chooses the pivot row, which is swapped into position k, then the pivot row is broadcast.) Tj ET
+0.45 0.48 0.55 RG 48 35 m 547 35 l S
+0 g
+BT /F1 8 Tf 48 22 Td (Simplified study notes | Page 3) Tj ET
+Q
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 13 0 R >>
+endobj
+13 0 obj
+<< /Length 4829 >>
+stream
+q
+0.12 0.20 0.36 rg
+BT /F2 16 Tf 48 808 Td (Parallel Computing: Easy Answers) Tj ET
+0.45 0.48 0.55 RG 48 798 m 547 798 l S
+0 g
+BT /F1 9.4 Tf 48 778.0 Td () Tj ET
+BT /F1 9.4 Tf 48 765.0 Td (Every processor updates its local rows i > k: multiplier = a[i,k]/a[k,k], then row_i = row_i -) Tj ET
+BT /F1 9.4 Tf 48 752.0 Td (multiplier x pivot_row. The pivot-row broadcast supplies the n-k values needed by all) Tj ET
+BT /F1 9.4 Tf 48 739.0 Td (processors. At the end, back substitution also needs broadcasts of newly known x values.) Tj ET
+BT /F1 9.4 Tf 48 726.0 Td () Tj ET
+BT /F1 9.4 Tf 48 713.0 Td (Arithmetic is Theta\(n^3/p\). A standard message estimate is Tp = Theta\(\(n^3/p\)t_calc + n t_s log) Tj ET
+BT /F1 9.4 Tf 48 700.0 Td (p + n^2 t_w\), plus row-swap and synchronization costs. The n log p term comes from) Tj ET
+BT /F1 9.4 Tf 48 687.0 Td (reductions/broadcast startups; n^2 bandwidth comes from all pivot rows. Partial pivoting) Tj ET
+BT /F1 9.4 Tf 48 674.0 Td (improves numerical safety but adds the max reduction and possible row movement.) Tj ET
+BT /F1 9.4 Tf 48 661.0 Td () Tj ET
+BT /F2 11.5 Tf 48 648.0 Td (Q12. Parallel Jacobi on p processors) Tj ET
+BT /F1 9.4 Tf 48 630.0 Td (Give each processor about n/p rows of A, b, and the corresponding entries of x_new. Every) Tj ET
+BT /F1 9.4 Tf 48 617.0 Td (processor reads the old full vector x, computes its assigned equations, and writes its own part) Tj ET
+BT /F1 9.4 Tf 48 604.0 Td (of x_new. Then all processors exchange their portions so that each has the full new vector for) Tj ET
+BT /F1 9.4 Tf 48 591.0 Td (the next iteration.) Tj ET
+BT /F1 9.4 Tf 48 578.0 Td () Tj ET
+BT /F1 9.4 Tf 48 565.0 Td (Local arithmetic per iteration is Theta\(n^2/p\), hence T_comp = Theta\(\(n^2/p\)t_calc\). If a) Tj ET
+BT /F1 9.4 Tf 48 552.0 Td (tree-style all-gather is used, a simple conservative communication estimate is T_share =) Tj ET
+BT /F1 9.4 Tf 48 539.0 Td (Theta\(t_s log p + 8n t_w log p\). A ring all-gather has different startup/bandwidth constants but) Tj ET
+BT /F1 9.4 Tf 48 526.0 Td (sends the same total vector information.) Tj ET
+BT /F1 9.4 Tf 48 513.0 Td () Tj ET
+BT /F1 9.4 Tf 48 500.0 Td (Therefore T_iter = Theta\(\(n^2/p\)t_calc + T_share\). Repeating until convergence gives total time) Tj ET
+BT /F1 9.4 Tf 48 487.0 Td (= \(number of iterations\) x T_iter. The exchange of x_new, not the row computation, is the key) Tj ET
+BT /F1 9.4 Tf 48 474.0 Td (communication cost.) Tj ET
+BT /F1 9.4 Tf 48 461.0 Td () Tj ET
+BT /F2 11.5 Tf 48 448.0 Td (Q13. Enumeration sort on a CRCW PRAM) Tj ET
+BT /F3 8.2 Tf 48 430.0 Td (Give a processor to every ordered pair \(i,j\), so n^2 processors compare A[i] with A[j] in parallel. The rank of A[i] is the number of values smaller than it. To make equal values stable, also count an equal A[j] when j < i:) Tj ET
+BT /F3 8.2 Tf 48 417.0 Td (rank\(i\) = count{j : A[j] < A[i] or \(A[j] = A[i] and j < i\)}.) Tj ET
+BT /F3 8.2 Tf 48 404.0 Td (Then write A[i] into output[rank\(i\)].) Tj ET
+BT /F1 9.4 Tf 48 391.0 Td () Tj ET
+BT /F1 9.4 Tf 48 378.0 Td (For 7, 3, 9, 1, 5, 4 the ranks are:) Tj ET
+BT /F3 8.2 Tf 48 365.0 Td (value:  7  3  9  1  5  4) Tj ET
+BT /F3 8.2 Tf 48 352.0 Td (rank:   4  1  5  0  3  2) Tj ET
+BT /F3 8.2 Tf 48 339.0 Td (output: [1, 3, 4, 5, 7, 9]) Tj ET
+BT /F1 9.4 Tf 48 326.0 Td () Tj ET
+BT /F1 9.4 Tf 48 313.0 Td (With a CRCW model that supports the required concurrent counting/reduction, this is O\(1\)) Tj ET
+BT /F1 9.4 Tf 48 300.0 Td (parallel time using O\(n^2\) processors. On a PRAM that must reduce each set of comparisons with a) Tj ET
+BT /F1 9.4 Tf 48 287.0 Td (binary tree, the rank accumulation is O\(log n\). Its processor cost is high, so it is mainly a) Tj ET
+BT /F1 9.4 Tf 48 274.0 Td (theoretical parallel algorithm.) Tj ET
+BT /F1 9.4 Tf 48 261.0 Td () Tj ET
+BT /F2 11.5 Tf 48 248.0 Td (Q14. Odd-even transposition sort) Tj ET
+BT /F1 9.4 Tf 48 230.0 Td (Place one value in each processor of a line. In odd phases compare-exchange pairs \(1,2\), \(3,4\),) Tj ET
+BT /F1 9.4 Tf 48 217.0 Td (... . In even phases compare-exchange pairs \(2,3\), \(4,5\), ... . A compare-exchange leaves the) Tj ET
+BT /F1 9.4 Tf 48 204.0 Td (smaller value on the left and the larger on the right.) Tj ET
+BT /F1 9.4 Tf 48 191.0 Td () Tj ET
+BT /F3 8.2 Tf 48 178.0 Td (Trace for [8,3,7,1,6,2,5,4]:) Tj ET
+BT /F3 8.2 Tf 48 165.0 Td (start [8,3,7,1,6,2,5,4]) Tj ET
+BT /F3 8.2 Tf 48 152.0 Td (odd   [3,8,1,7,2,6,4,5]) Tj ET
+BT /F3 8.2 Tf 48 139.0 Td (even  [3,1,8,2,7,4,6,5]) Tj ET
+BT /F3 8.2 Tf 48 126.0 Td (odd   [1,3,2,8,4,7,5,6]) Tj ET
+BT /F3 8.2 Tf 48 113.0 Td (even  [1,2,3,4,8,5,7,6]) Tj ET
+BT /F3 8.2 Tf 48 100.0 Td (odd   [1,2,3,4,5,8,6,7]) Tj ET
+BT /F3 8.2 Tf 48 87.0 Td (even  [1,2,3,4,5,6,8,7]) Tj ET
+0.45 0.48 0.55 RG 48 35 m 547 35 l S
+0 g
+BT /F1 8 Tf 48 22 Td (Simplified study notes | Page 4) Tj ET
+Q
+endstream
+endobj
+14 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 15 0 R >>
+endobj
+15 0 obj
+<< /Length 4317 >>
+stream
+q
+0.12 0.20 0.36 rg
+BT /F2 16 Tf 48 808 Td (Parallel Computing: Easy Answers) Tj ET
+0.45 0.48 0.55 RG 48 798 m 547 798 l S
+0 g
+BT /F3 8.2 Tf 48 778.0 Td (odd   [1,2,3,4,5,6,7,8]) Tj ET
+BT /F3 8.2 Tf 48 765.0 Td (even  [1,2,3,4,5,6,7,8]) Tj ET
+BT /F1 9.4 Tf 48 752.0 Td () Tj ET
+BT /F1 9.4 Tf 48 739.0 Td (In one phase a value can move at most one position. The smallest item may need to travel from) Tj ET
+BT /F1 9.4 Tf 48 726.0 Td (the far right to the far left, a distance of n-1. Thus n phases are sufficient \(and the worst) Tj ET
+BT /F1 9.4 Tf 48 713.0 Td (case needs Theta\(n\) time\) with n processors.) Tj ET
+BT /F1 9.4 Tf 48 700.0 Td () Tj ET
+BT /F2 11.5 Tf 48 687.0 Td (Q15. Bitonic sort and bitonic merge) Tj ET
+BT /F1 9.4 Tf 48 669.0 Td (A bitonic sequence first increases then decreases, or any cyclic shift of such a sequence.) Tj ET
+BT /F1 9.4 Tf 48 656.0 Td (Example: [1,2,6,7,8,5,4,3] is bitonic. A bitonic merge compares elements distance n/2 apart,) Tj ET
+BT /F1 9.4 Tf 48 643.0 Td (puts each smaller one in the low half and larger one in the high half, and recursively merges) Tj ET
+BT /F1 9.4 Tf 48 630.0 Td (both halves.) Tj ET
+BT /F1 9.4 Tf 48 617.0 Td () Tj ET
+BT /F1 9.4 Tf 48 604.0 Td (Example merge for eight values:) Tj ET
+BT /F3 8.2 Tf 48 591.0 Td ([1,2,6,7,8,5,4,3]) Tj ET
+BT /F3 8.2 Tf 48 578.0 Td (distance 4 -> [1,2,4,3 | 8,5,6,7]) Tj ET
+BT /F3 8.2 Tf 48 565.0 Td (distance 2, then 1 -> [1,2,3,4 | 5,6,7,8]) Tj ET
+BT /F1 9.4 Tf 48 552.0 Td () Tj ET
+BT /F1 9.4 Tf 48 539.0 Td (Bitonic sort makes a bitonic sequence by recursively sorting the first half upward and the) Tj ET
+BT /F1 9.4 Tf 48 526.0 Td (second half downward, then applying an upward bitonic merge. For eight elements: sort two groups) Tj ET
+BT /F1 9.4 Tf 48 513.0 Td (of four in opposite directions, concatenate them, then merge as above.) Tj ET
+BT /F1 9.4 Tf 48 500.0 Td () Tj ET
+BT /F1 9.4 Tf 48 487.0 Td (A merge has log2\(n\) compare stages. Bitonic sort has log2\(n\) merge levels, so depth is O\(log^2) Tj ET
+BT /F1 9.4 Tf 48 474.0 Td (n\). A comparator network uses n/2 comparators per stage; a hypercube implementation commonly) Tj ET
+BT /F1 9.4 Tf 48 461.0 Td (uses n processors, one item per processor, for the same O\(log^2 n\) time.) Tj ET
+BT /F1 9.4 Tf 48 448.0 Td () Tj ET
+BT /F2 11.5 Tf 48 435.0 Td (Q16. Quicksort-based parallel sorting) Tj ET
+BT /F1 9.4 Tf 48 417.0 Td (In parallel quicksort, choose a pivot, split keys into less-than and greater-than-or-equal) Tj ET
+BT /F1 9.4 Tf 48 404.0 Td (groups, send the two groups to two processor groups, and repeat independently. On a p-processor) Tj ET
+BT /F1 9.4 Tf 48 391.0 Td (hypercube, p = 2^d. At hypercube stage r, paired processors exchange the part of their local) Tj ET
+BT /F1 9.4 Tf 48 378.0 Td (lists that belongs in the other half. After d = log2\(p\) stages, each processor has the keys for) Tj ET
+BT /F1 9.4 Tf 48 365.0 Td (one final range and sorts its local list.) Tj ET
+BT /F1 9.4 Tf 48 352.0 Td () Tj ET
+BT /F1 9.4 Tf 48 339.0 Td (Good pivots make each split close to half-and-half. Random pivots give good balance in) Tj ET
+BT /F1 9.4 Tf 48 326.0 Td (expectation; sample medians or median-of-medians improve balance at extra cost. With) Tj ET
+BT /F1 9.4 Tf 48 313.0 Td (balanced partitions, a useful expected estimate is:) Tj ET
+BT /F3 9.0 Tf 48 300.0 Td (Tp = O\(\(n/p\) log n + \(n/p\) log p + t_s log p\).) Tj ET
+BT /F1 9.4 Tf 48 287.0 Td (The first term includes local sorting and useful work; the other terms represent repeated) Tj ET
+BT /F1 9.4 Tf 48 274.0 Td (redistribution and message latency. Details vary by network and pivot method.) Tj ET
+BT /F1 9.4 Tf 48 261.0 Td () Tj ET
+BT /F1 9.4 Tf 48 248.0 Td (Speedup degrades with bad pivots because one processor group receives most keys and becomes the) Tj ET
+BT /F1 9.4 Tf 48 235.0 Td (bottleneck. It also degrades when n/p is too small, because startup and routing dominate, when) Tj ET
+BT /F1 9.4 Tf 48 222.0 Td (many duplicate keys are not split evenly, or when pivot selection itself is expensive. Parallel) Tj ET
+BT /F1 9.4 Tf 48 209.0 Td (quicksort works well only when partitioning keeps both data and work reasonably balanced.) Tj ET
+BT /F1 9.4 Tf 48 196.0 Td () Tj ET
+0.45 0.48 0.55 RG 48 35 m 547 35 l S
+0 g
+BT /F1 8 Tf 48 22 Td (Simplified study notes | Page 5) Tj ET
+Q
+endstream
+endobj
+xref
+0 16
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000148 00000 n 
+0000000218 00000 n 
+0000000293 00000 n 
+0000000361 00000 n 
+0000000507 00000 n 
+0000005264 00000 n 
+0000005410 00000 n 
+0000010509 00000 n 
+0000010657 00000 n 
+0000015962 00000 n 
+0000016110 00000 n 
+0000020992 00000 n 
+0000021140 00000 n 
+trailer
+<< /Size 16 /Root 1 0 R >>
+startxref
+25510
+%%EOF
